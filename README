@@ -2,6 +2,8 @@
 
 Goofing around with ClojureScript and HTML5 Canvas: creates little "glitches" that traverse a canvas and wreck havoc.
 
+Demo: http://www.youtube.com/watch?v=05xoIO2QMO4
+
 ## Usage
 
 Compile with glitches.build/build-home, open glitches.html in a web browser, click "Glitch!"
