@@ -1,0 +1,13 @@
+# glitches
+
+Goofing around with ClojureScript and HTML5 Canvas: creates little "glitches" that traverse a canvas and wreck havoc.
+
+## Usage
+
+Compile with glitches.build/build-home, open glitches.html in a web browser, click "Glitch!"
+
+## License
+
+Copyright (C) 2012 Chris Maguire
+
+Distributed under the Eclipse Public License, the same as Clojure.
