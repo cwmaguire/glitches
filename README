@@ -4,6 +4,8 @@ Goofing around with ClojureScript and HTML5 Canvas: creates little "glitches" th
 
 Demo: http://www.youtube.com/watch?v=05xoIO2QMO4
 
+Code walkthrough: http://youtu.be/2SATasBCkxs
+
 ## Usage
 
 Compile with glitches.build/build-home, open glitches.html in a web browser, click "Glitch!"
