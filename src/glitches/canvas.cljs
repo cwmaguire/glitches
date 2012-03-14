@@ -2,14 +2,23 @@
   (:require [goog.dom :as dom]
             [glitches.coords :as coords]))
 
-(defn data-seq
+(defn px-array-to-vec
   "Uses raw JavaScript to convert a CanvasPixelArray to a vector; ignores alpha"
   [d] [(js* "~{}[0], ~{}[1], ~{}[2]" d d d)])
 
-(defn px
+(defn rgb
   "Return a vector of RGB values in context ctx at point [x,y]"
   [ctx [x y]]
-  (data-seq (.-data (.getImageData ctx x y 1 1))))
+  (px-array-to-vec (.-data (.getImageData ctx x y 1 1))))
+
+(defn pxs
+  "Retrieve a map of coordinates to summed RGB values for surrounding pixels"
+  [ctx x y]
+  (let [coords (coords/around x y)
+        clrs (map (partial rgb ctx) coords)]
+    (zipmap
+      coords
+      clrs)))
 
 (defn draw-px
   "Draw a random color pixel on the canvas context ctx at [x,y]"
@@ -17,17 +26,16 @@
   (set! (.-fillStyle ctx) color)
   (.fillRect ctx x y 1 1))
 
-(defn ctx
-  "Get a context for 'canvas1'"
-  []
-  (let [ctx (.getContext (dom/getElement "canvas1") "2d")]
-    ctx))
+(defn get-ctx
+  "Get a context for a canvas; uses 'canvas1' if none specified."
+  [canv]
+    (.getContext canv "2d"))
 
-(defn pxs
-  "Retrieve a map of coordinates to summed RGB values for surrounding pixels"
-  [ctx x y]
-  (let [coords (coords/around x y)
-        pixels (map (partial px ctx) coords)]
-    (zipmap
-       coords
-      (map (fn [d] (apply + d)) pixels))))
+(defn white
+  "Paints a canvas completely white"
+  [canv]
+  (let [w (.-width canv)
+        h (.-height canv)
+        ctx (get-ctx canv)]
+    (set! (.-fillStyle ctx) "white")
+    (.fillRect ctx 0 0 w h)))
