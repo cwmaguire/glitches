@@ -7,5 +7,5 @@
 
 (defn random-pairs
   [n max]
-  (for [x (range 0 (+ n 1))]
+  (for [x (range n)]
     [(rand-up-to max) (rand-up-to max)]))

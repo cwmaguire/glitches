@@ -12,17 +12,17 @@
   (px-array-to-vec (.-data (.getImageData ctx x y 1 1))))
 
 (defn pxs
-  "Retrieve a map of coordinates to summed RGB values for surrounding pixels"
+  "Retrieve a map of coordinates to RGB values for surrounding pixels"
   [ctx x y]
   (let [coords (coords/around x y)
         clrs (map (partial rgb ctx) coords)]
-    (zipmap
-      coords
-      clrs)))
+    ; output all coords with their colors
+    ;(js/alert (apply str "colors: " (interleave (map (fn [c] (str "[" (first c) "," (second c) "],\n")) coords) (map (fn [c] (str "[" (first c) "," (second c) "," (nth c 2) "],\n")) clrs))))
+    (map hash-map (repeat :coords) coords (repeat :colors) clrs)))
 
 (defn draw-px
   "Draw a random color pixel on the canvas context ctx at [x,y]"
-  [ctx [x y] color]
+  [ctx {[x y] :coords} color]
   (set! (.-fillStyle ctx) color)
   (.fillRect ctx x y 1 1))
 
