@@ -1,6 +1,7 @@
 # glitches
 
 Goofing around with ClojureScript and HTML5 Canvas: creates little "glitches" that traverse a canvas and wreck havoc.
+Allows you to specify multiple functions to sort the surrounding pixels by before picking the first one; also allows you to specify which function should modify the chosen pixel.
 
 Demo: http://www.youtube.com/watch?v=05xoIO2QMO4
 
@@ -8,7 +9,14 @@ Code walkthrough: http://youtu.be/2SATasBCkxs
 
 ## Usage
 
-Compile with glitches.build/build-home, open glitches.html in a web browser, click "Glitch!"
+Compile with glitches.build/build-home, open glitches.html in a web browser, click "White" then click "Glitch!"
+The reason for "White" is that it writes the initial data to the canvas if there isn't any. (I suppose I could do that on page load).
+
+If you'd like the image buttons to work you'll have to wire them up to your own images.
+To "glitch" an image simply click an image button and then click "Glitch!".
+
+You can change where each "glitch" goes by changing the list of functions in glitches.glitch/go used to sort the surrounding pixels.
+You can change what happens to the next pixel by changing the function passed into the first call to "crawl" (again, in glitches.glitch/go).
 
 ## License
 
