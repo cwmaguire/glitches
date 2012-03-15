@@ -4,7 +4,7 @@
 (def color-digits (concat (range 0 10) "ABCDEF"))
 
 (defn to-hex-str
-  "Convert a "
+  "Convert a number to a two digit hexidecimal string"
   [x]
   (let [num-digits (count color-digits)
         x (max 0 (min 255 x))]
@@ -19,7 +19,7 @@
   "Create a random HTML hex colour"
   []
   ; force rand-color-digit to be called sequentially, not reused
-  (apply str "#" (take 6 (for [x (range 0 6)] (rand-color-digit)))))
+  (apply str "#" (for [x (range 0 6)] (rand-color-digit))))
 
 (defn rand-darker-color
   "Create a random HTML hex colour where red green and blue are all darker than they were originally"
