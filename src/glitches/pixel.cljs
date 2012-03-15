@@ -1,8 +1,8 @@
 (ns glitches.pixel)
 
 (defn brightness
-  [{[r g b] :colors}]
-  (+ r g b))
+  [{[r g b a] :colors}]
+  (+ r g b a))
 
 (defn distance-from-xy
   "Returns the distance from px to [x,y] such that the farther away px is, the higher the number"
